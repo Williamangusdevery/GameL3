@@ -3,6 +3,7 @@ print("Magic cards starting!")
 Player_hp = 10 
 Enemy_hp = 10
 Player_mana = 4
+Enemy_mana = 4
 
 print("Player hp", Player_hp)
 print("Enemy hp", Enemy_hp)
