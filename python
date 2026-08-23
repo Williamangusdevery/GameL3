@@ -1,6 +1,5 @@
 from card import card #get card template from card.py
 
-
 print("Magic cards starting!")
 
 Player_hp = 10 
@@ -9,5 +8,10 @@ Player_mana = 4 #declearing varibles
 Enemy_mana = 4
 
 Zap = card("Zap", 1, 1, "enemy", "damage") #Zap test card
-print(Zap.name)
-print(Zap.mana_cost)
+
+Enemy_hp = Enemy_hp - Zap.amount
+Player_mana = Player_mana - Zap.mana_cost
+
+print("Zap played!")
+print("Enemy HP:", Enemy_hp)
+print("Mana:", Player_mana)

@@ -1,4 +1,4 @@
-class card:
+class card: ##card template
     def __init__(self, name, mana_cost, amount, target, action):
         self.name = name 
         self.mana_cost = mana_cost 
