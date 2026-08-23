@@ -8,6 +8,6 @@ Enemy_hp = 10
 Player_mana = 4 #declearing varibles
 Enemy_mana = 4
 
-print("Player hp", Player_hp)
-print("Enemy hp", Enemy_hp)
-print("mana", Player_mana)
+Zap = card("Zap", 1, 1, "enemy", "damage") #Zap test card
+print(Zap.name)
+print(Zap.mana_cost)
