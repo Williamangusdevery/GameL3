@@ -9,6 +9,18 @@ player2 = Player()
 Zap = card("Zap", 1, 1, "enemy", "damage") #Zap test card
 Heal = card("Heal", 1, 2, "self", "heal") #add heal card
 Guard = card("Guard", 1, 2, "self", "block") # add guard card 
+Strike = card("Strike", 2, 3, "enemy", "damage") # add strike card
+Medkit = card("Medkit", 2, 4, "self", "heal") # add medkit card
+Crush = card("Crush", 2, 2, "enemy", "damage")
+Parry = card("Parry", 2, 3, "self", "block")
+Slash = card("Slash", 3, 4, "enemy", "damage")
+Fireball = card("Fireball", 3, 5, "enemy", "damage")
+
+Wallop = card("Wallop", 4, 7, "enemy", "damage")
+Barrier = card("Barrier", 4, 8, "self", "block")
+Mend = card("Mend", 4, 6, "enemy", "damage")
+Immolate = card("Immolate", 5, 9, "enemy", "damage")
+Doom = card("Doom", 10, 20, "enemy", "damage")
 
 def play_card(user, target, card): #playing  cards
     if user.mana < card.mana_cost:
