@@ -3,38 +3,38 @@ from Player import Player
 
 print("Magic cards starting!")
 
-player = Player()
-enemy = Player()
-
-
+player1 = Player()
+player2 = Player()
 #cards
 Zap = card("Zap", 1, 1, "enemy", "damage") #Zap test card
 Heal = card("Heal", 1, 2, "self", "heal") #add heal card
-Guard = card("Guard", 1, 2, "self", "Block") # add guard card 
+Guard = card("Guard", 1, 2, "self", "block") # add guard card 
 
-def play_card(player, card): #playing  cards
-    if player.mana < card.mana_cost:
+def play_card(user, target, card): #playing  cards
+    if user.mana < card.mana_cost:
         print("NEED MORE MANA!")
         return
 
-    player.mana = player.mana - card.mana_cost
+    user.mana = user.mana - card.mana_cost
 
     if card.action == "damage":
-        enemy.hp = enemy.hp - card.amount
+        target.hp = target.hp - card.amount
 
     elif card.action == "heal":
-        player.hp = min(player.hp + card.amount, player.max_hp)
+        user.hp = min(user.hp + card.amount, user.max_hp)
 
     elif card.action == "block":
-        player.shield = player.shield + card.amount
+        user.shield = user.shield + card.amount
 
-    print("Played:", card.name)
+    print(card.name, "was played")
 
+# user, target, card
+play_card(player1, player2, Guard)
 
-play_card(player, Zap)
+print("Player1 HP:", player1.hp)
+print("Player1 Mana:", player1.mana)
+print("Player1 Shield:", player1.shield)
 
-print("Player HP:", player.hp)
-print("Player Mana:", player.mana)
-print("Player Shield:", player.shield)
-
-print("Enemy HP:", enemy.hp)
+print("Player2 HP:", player2.hp)
+print("Player2 Mana:", player2.mana)
+print("Player2 Shield:", player2.shield)
