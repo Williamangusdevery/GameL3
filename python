@@ -18,7 +18,7 @@ Fireball = card("Fireball", 3, 5, "enemy", "damage")
 
 Wallop = card("Wallop", 4, 7, "enemy", "damage")
 Barrier = card("Barrier", 4, 8, "self", "block")
-Mend = card("Mend", 4, 6, "enemy", "damage")
+Mend = card("Mend", 4, 6, "self", "damage")
 Immolate = card("Immolate", 5, 9, "enemy", "damage")
 Doom = card("Doom", 10, 20, "enemy", "damage")
 
@@ -30,8 +30,14 @@ def play_card(user, target, card): #playing  cards
     user.mana = user.mana - card.mana_cost
 
     if card.action == "damage":
-        target.hp = target.hp - card.amount
+        if target.shield >= card.amount: #shield reduces damage
+            target.shield = target.shield - card.amount
 
+        else:
+            damage_left = card.amount - target.shield # if the damage is more then the shield
+            target.shield = 0 
+            target.hp = target.hp - damage_left 
+            
     elif card.action == "heal":
         user.hp = min(user.hp + card.amount, user.max_hp)
 
