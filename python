@@ -9,9 +9,26 @@ Enemy_mana = 4
 
 Zap = card("Zap", 1, 1, "enemy", "damage") #Zap test card
 
-Enemy_hp = Enemy_hp - Zap.amount
-Player_mana = Player_mana - Zap.mana_cost
 
-print("Zap played!")
-print("Enemy HP:", Enemy_hp)
-print("Mana:", Player_mana)
+def play_card(card):
+    global Player_hp #new function to resolve cards
+    global Enemy_hp
+    global Player_mana
+
+    if Player_mana < card.mana_cost: #incase not enough mana
+        print("NEED MORE MANA")
+        return
+
+    Player_mana = Player_mana - card.mana_cost #spend mana
+
+    if card.action == "damage": #deal damage 
+        Enemy_hp = Enemy_hp - card.amount 
+
+
+    print ("played:", card.name)
+    print ("Enemy hitpoints:", Enemy_hp) #telling player stuff 
+    print("Player HP:", Player_hp)
+    print("Mana:", Player_mana)
+    
+
+play_card(Zap) #play zap
