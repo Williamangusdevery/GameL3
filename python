@@ -1,46 +1,40 @@
 from card import card #get card template from card.py
+from Player import Player
 
 print("Magic cards starting!")
 
-Max_hp = 10
-Player_hp = 10 
-Enemy_hp = 10
-Player_mana = 4 #declearing varibles
-Enemy_mana = 4
-Player_shield = 0
+player = Player()
+enemy = Player()
+
 
 #cards
 Zap = card("Zap", 1, 1, "enemy", "damage") #Zap test card
 Heal = card("Heal", 1, 2, "self", "heal") #add heal card
-Guard = card("Guard", 1, 2, "self", "shield") # add guard card 
+Guard = card("Guard", 1, 2, "self", "Block") # add guard card 
 
-def play_card(card):
-    global Player_hp #new function to resolve cards
-    global Enemy_hp
-    global Player_mana
-    global Player_shield
-
-    if Player_mana < card.mana_cost: #incase not enough mana
-        print("NEED MORE MANA")
+def play_card(player, card): #playing  cards
+    if player.mana < card.mana_cost:
+        print("NEED MORE MANA!")
         return
 
-    Player_mana = Player_mana - card.mana_cost #spend mana
+    player.mana = player.mana - card.mana_cost
 
-    if card.action == "damage": #deal damage 
-        Enemy_hp = Enemy_hp - card.amount 
+    if card.action == "damage":
+        enemy.hp = enemy.hp - card.amount
 
     elif card.action == "heal":
-        Player_hp = min(Player_hp + card.amount, Max_hp) #limit health to 10
+        player.hp = min(player.hp + card.amount, player.max_hp)
 
-    elif card.action == "shield":
-        Player_shield = Player_shield + card.amount 
+    elif card.action == "block":
+        player.shield = player.shield + card.amount
+
+    print("Played:", card.name)
 
 
-    print ("played:", card.name)
-    print ("Enemy hitpoints:", Enemy_hp) #telling player stuff 
-    print("Player HP:", Player_hp)
-    print("Mana:", Player_mana)
-    print("Player Shield:", Player_shield)
-    
+play_card(player, Zap)
 
-play_card(Guard) #play card
+print("Player HP:", player.hp)
+print("Player Mana:", player.mana)
+print("Player Shield:", player.shield)
+
+print("Enemy HP:", enemy.hp)
