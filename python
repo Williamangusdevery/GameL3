@@ -40,13 +40,51 @@ def play_card(user, target, card): #playing  cards
 
     print(card.name, "was played")
 
-# user, target, card
-play_card(player1, player2, Guard)
+def player_turn(user, target): #adding a playerturn function
+    print("\nYour turn")
+    print("Hit Points", user.hp)
+    print("Mana", user.mana)
+    print("Shield", user.shield) #telling player varibles
 
-print("Player1 HP:", player1.hp)
-print("Player1 Mana:", player1.mana)
-print("Player1 Shield:", player1.shield)
+    print("\npick a card") #chosing between basic cards
+    print("1. Zap")
+    print("2. Heal")
+    print("3. Guard")
+    print("4. Skip")
 
-print("Player2 HP:", player2.hp)
-print("Player2 Mana:", player2.mana)
-print("Player2 Shield:", player2.shield)
+    choice = input("Pick: ")
+
+    if choice == "1":
+        play_card(user, target, Zap)
+
+    elif choice == "2":
+        play_card(user, target, Heal)
+
+    elif choice == "3":
+        play_card(user, target, Guard)
+
+    elif choice == "4":
+        print("Turn Skipped")
+
+    else:
+        print("try again")
+        
+
+
+while player1.hp > 0 and player2.hp > 0:
+
+    player_turn(player1, player2)
+
+    if player2.hp <= 0:
+        break
+
+
+    player_turn(player2, player1)
+
+print("\nGame over!")
+
+if player1.hp <= 0:
+    print("Player 2 WINS!!!")
+
+elif player2.hp <= 0:
+    print("Player 1 WINS!!!")
