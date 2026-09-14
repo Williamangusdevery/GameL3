@@ -5,6 +5,11 @@ print("Magic cards starting!")
 
 player1 = Player()
 player2 = Player()
+
+player1.mana = 10
+
+print("Player 1 mana:", player1.mana)
+print("Player 2 mana:", player2.mana)
 #cards
 Zap = card("Zap", 1, 1, "enemy", "damage") #Zap test card
 Heal = card("Heal", 1, 2, "self", "heal") #add heal card
@@ -16,7 +21,7 @@ Medkit = card("Medkit", 2, 4, "self", "heal") # add medkit card
 Crush = card("Crush", 2, 2, "enemy", "damage")
 Battery = card("Battery", 2, 4, "self", "charge")
 Revenge = card("Revenge", 2, 0, "enemy", "revenge")
-Armour = card("Amour", 2, 1, "self", "armour")
+Armour = card("Armour", 2, 1, "self", "armour")
 Parry = card("Parry", 2, 3, "self", "block")
 #3 mana
 Sacrifice = card("Sacrifice", 3, 6, "self", "sacrifice")
@@ -24,7 +29,7 @@ Regenerate = card("Regenerate", 3, 2, "self", "regenerate")
 Slash = card("Slash", 3, 4, "enemy", "damage")
 Fireball = card("Fireball", 3, 5, "enemy", "damage")
 Drain = card("Drain", 3, 2, "enemy", "drain")
-Deflect = card("Deflect", 3, 0, "enemy", "deflect")
+Deflect = card("Deflect", 3, 0, "self", "deflect")
 #4 mana
 Wallop = card("Wallop", 4, 7, "enemy", "damage")
 Barrier = card("Barrier", 4, 8, "self", "block")
@@ -58,6 +63,9 @@ def play_card(user, target, card): #playing  cards
 
     elif card.action == "block":
         user.shield = user.shield + card.amount
+
+    elif card.action == "charge":
+        user.mana = user.mana + card.amount
 
     print(card.name, "was played")
 
@@ -93,7 +101,6 @@ def player_turn(user, target): #adding a playerturn function
     else:
         print("try again") 
         
-
 while player1.hp > 0 and player2.hp > 0:
 
     player_turn(player1, player2)
@@ -101,8 +108,7 @@ while player1.hp > 0 and player2.hp > 0:
     if player2.hp <= 0:
         break
 
-
-    player_turn(player2, player1)
+player_turn(player2, player1)
 
 print("\nGame over!")
 
