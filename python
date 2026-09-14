@@ -8,21 +8,35 @@ player2 = Player()
 #cards
 Zap = card("Zap", 1, 1, "enemy", "damage") #Zap test card
 Heal = card("Heal", 1, 2, "self", "heal") #add heal card
-Charge = card("")
+Charge = card("Charge", 1, 2, "self", "charge")
 Guard = card("Guard", 1, 2, "self", "block") # add guard card 
+# 2 mana
 Strike = card("Strike", 2, 3, "enemy", "damage") # add strike card
 Medkit = card("Medkit", 2, 4, "self", "heal") # add medkit card
 Crush = card("Crush", 2, 2, "enemy", "damage")
+Battery = card("Battery", 2, 4, "self", "charge")
+Revenge = card("Revenge", 2, 0, "enemy", "revenge")
+Armour = card("Amour", 2, 1, "self", "armour")
 Parry = card("Parry", 2, 3, "self", "block")
+#3 mana
+Sacrifice = card("Sacrifice", 3, 6, "self", "sacrifice")
+Regenerate = card("Regenerate", 3, 2, "self", "regenerate")
 Slash = card("Slash", 3, 4, "enemy", "damage")
 Fireball = card("Fireball", 3, 5, "enemy", "damage")
-
+Drain = card("Drain", 3, 2, "enemy", "drain")
+Deflect = card("Deflect", 3, 0, "enemy", "deflect")
+#4 mana
 Wallop = card("Wallop", 4, 7, "enemy", "damage")
 Barrier = card("Barrier", 4, 8, "self", "block")
 Mend = card("Mend", 4, 6, "self", "heal")
+Overcharge = card("Overcharge", 4, 1, "self", "overcharge")
+# 5 mana
 Immolate = card("Immolate", 5, 9, "enemy", "damage")
+Switch = card("Switch", 5, 0, "enemy", "switch")
+# DOOOOOOM
 Doom = card("Doom", 10, 20, "enemy", "damage")
 
+#functions
 def play_card(user, target, card): #playing  cards
     if user.mana < card.mana_cost:
         print("NEED MORE MANA!")
