@@ -5,3 +5,4 @@ class Player:
         self.mana = 2
         self.shield = 0
         self.last_damage = 0 
+        self.armour = 0

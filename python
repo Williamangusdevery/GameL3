@@ -46,6 +46,12 @@ def play_card(user, target, card): #playing  cards
     user.mana = user.mana - card.mana_cost
 
     if card.action == "damage":
+
+        card.amount = card.amount - target.armour
+
+        if card.amount < 0:
+            card.amount = 0
+
         if target.shield >= card.amount: #shield reduces damage
             target.shield = target.shield - card.amount
 
@@ -65,9 +71,29 @@ def play_card(user, target, card): #playing  cards
         user.mana = user.mana + card.amount
 
     elif card.action == "revenge":
-        if target.last_damage > 0:
-            target.hp = target.hp - user.last_damage
-            print("Revenge Dealt", user.last_damage, "damage")
+
+        damage = user.last_damage - target.armour
+
+        if damage < 0:
+            damage = 0
+
+        if target.shield >= damage: #shield reduces damage
+            target.shield = target.shield - damage
+        
+        else:
+            damage_left = damage - target.shield # if the damage is more then the shield
+            target.shield = 0 
+            target.hp = target.hp - damage_left 
+            target.last_damage = damage_left
+        
+    
+        print("Revenge Dealt", user.last_damage, "damage")
+        user.last_damage = 0
+
+
+
+    elif card.action == "armour":
+            user.armour = user.armour + card.amount
 
     print(card.name, "was played")
 
@@ -92,7 +118,7 @@ def player_turn(user, target): #adding a playerturn function
         play_card(user, target, Zap)
 
     elif choice == "2":
-        play_card(user, target, Revenge)
+        play_card(user, target, Heal)
 
     elif choice == "3":
         play_card(user, target, Guard)
