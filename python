@@ -8,6 +8,7 @@ player2 = Player()
 #cards
 Zap = card("Zap", 1, 1, "enemy", "damage") #Zap test card
 Heal = card("Heal", 1, 2, "self", "heal") #add heal card
+Charge = card("")
 Guard = card("Guard", 1, 2, "self", "block") # add guard card 
 Strike = card("Strike", 2, 3, "enemy", "damage") # add strike card
 Medkit = card("Medkit", 2, 4, "self", "heal") # add medkit card
@@ -18,7 +19,7 @@ Fireball = card("Fireball", 3, 5, "enemy", "damage")
 
 Wallop = card("Wallop", 4, 7, "enemy", "damage")
 Barrier = card("Barrier", 4, 8, "self", "block")
-Mend = card("Mend", 4, 6, "self", "damage")
+Mend = card("Mend", 4, 6, "self", "heal")
 Immolate = card("Immolate", 5, 9, "enemy", "damage")
 Doom = card("Doom", 10, 20, "enemy", "damage")
 
@@ -47,6 +48,9 @@ def play_card(user, target, card): #playing  cards
     print(card.name, "was played")
 
 def player_turn(user, target): #adding a playerturn function
+
+    user.mana = user.mana + 2 
+
     print("\nYour turn")
     print("Hit Points", user.hp)
     print("Mana", user.mana)
@@ -75,7 +79,6 @@ def player_turn(user, target): #adding a playerturn function
     else:
         print("try again") 
         
-
 
 while player1.hp > 0 and player2.hp > 0:
 
