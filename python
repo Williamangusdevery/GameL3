@@ -53,6 +53,7 @@ def play_card(user, target, card): #playing  cards
             damage_left = card.amount - target.shield # if the damage is more then the shield
             target.shield = 0 
             target.hp = target.hp - damage_left 
+            target.last_damage = damage_left
             
     elif card.action == "heal":
         user.hp = min(user.hp + card.amount, user.max_hp)
@@ -62,6 +63,11 @@ def play_card(user, target, card): #playing  cards
 
     elif card.action == "charge":
         user.mana = user.mana + card.amount
+
+    elif card.action == "revenge":
+        if target.last_damage > 0:
+            target.hp = target.hp - user.last_damage
+            print("Revenge Dealt", user.last_damage, "damage")
 
     print(card.name, "was played")
 
@@ -83,10 +89,10 @@ def player_turn(user, target): #adding a playerturn function
     choice = input("Pick: ")
 
     if choice == "1":
-        play_card(user, target, Wallop)
+        play_card(user, target, Zap)
 
     elif choice == "2":
-        play_card(user, target, Heal)
+        play_card(user, target, Revenge)
 
     elif choice == "3":
         play_card(user, target, Guard)

@@ -4,3 +4,4 @@ class Player:
         self.max_hp = 10
         self.mana = 2
         self.shield = 0
+        self.last_damage = 0 
