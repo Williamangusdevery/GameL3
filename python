@@ -6,10 +6,6 @@ print("Magic cards starting!")
 player1 = Player()
 player2 = Player()
 
-player1.mana = 10
-
-print("Player 1 mana:", player1.mana)
-print("Player 2 mana:", player2.mana)
 #cards
 Zap = card("Zap", 1, 1, "enemy", "damage") #Zap test card
 Heal = card("Heal", 1, 2, "self", "heal") #add heal card
@@ -87,7 +83,7 @@ def player_turn(user, target): #adding a playerturn function
     choice = input("Pick: ")
 
     if choice == "1":
-        play_card(user, target, Zap)
+        play_card(user, target, Wallop)
 
     elif choice == "2":
         play_card(user, target, Heal)
@@ -108,8 +104,11 @@ while player1.hp > 0 and player2.hp > 0:
     if player2.hp <= 0:
         break
 
-player_turn(player2, player1)
+    player_turn(player2, player1)
 
+    if player1.hp <= 0:
+        break
+    
 print("\nGame over!")
 
 if player1.hp <= 0:
