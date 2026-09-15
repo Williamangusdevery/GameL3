@@ -95,11 +95,15 @@ def play_card(user, target, card): #playing  cards
     elif card.action == "armour":
             user.armour = user.armour + card.amount
 
+    elif card.action == "overcharge":
+        user.mana = user.mana + card.amount
+    
+
     print(card.name, "was played")
 
 def player_turn(user, target): #adding a playerturn function
 
-    user.mana = user.mana + 2 
+    user.mana = user.mana + user.managain #adding mana to player turn 
 
     print("\nYour turn")
     print("Hit Points", user.hp)
@@ -115,7 +119,7 @@ def player_turn(user, target): #adding a playerturn function
     choice = input("Pick: ")
 
     if choice == "1":
-        play_card(user, target, Zap)
+        play_card(user, target, Overcharge)
 
     elif choice == "2":
         play_card(user, target, Heal)

@@ -6,3 +6,4 @@ class Player:
         self.shield = 0
         self.last_damage = 0 
         self.armour = 0
+        self.managain = 2
