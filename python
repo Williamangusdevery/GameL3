@@ -35,7 +35,7 @@ Overcharge = card("Overcharge", 4, 1, "self", "overcharge")
 Immolate = card("Immolate", 5, 9, "enemy", "damage")
 Switch = card("Switch", 5, 0, "enemy", "switch")
 # DOOOOOOM
-Doom = card("Doom", 10, 20, "enemy", "damage")
+Doom = card("Doom", 10, 20, "enemy", "DOOM")
 
 #functions
 def deal_damage(user, target, damage): #dealing damage to player
@@ -116,6 +116,11 @@ def play_card(user, target, card): #playing  cards
         user.hp = target.hp
         target.hp = temp_hp
         print ("Switched hit points with opponent")
+
+    elif card.action == "DOOM":
+        deal_damage(user, target, card.amount)
+        print("A devastating wave of energy crashes into your opponent, leaving nothing untouched")
+        print("\n DOOM has been unleashed")
 
     print(card.name, "was played")
 
