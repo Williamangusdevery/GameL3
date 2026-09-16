@@ -38,6 +38,26 @@ Switch = card("Switch", 5, 0, "enemy", "switch")
 Doom = card("Doom", 10, 20, "enemy", "damage")
 
 #functions
+def deal_damage(user, target, damage): #dealing damage to player
+      
+    damage = card.amount - target.armour
+    if damage < 0:
+        damage = 0
+    
+    if target.deflect:
+        user.hp = user.hp - damage
+        target.deflect = False
+        print("Damage reflected!")
+        return 
+    
+    if target.shield >= damage: #shield reduces damage
+        target.shield = target.shield - damage
+    
+    else:
+        damage_left = damage - target.shield # if the damage is more then the shield
+        target.shield = 0 
+        target.hp = target.hp - damage_left 
+        target.last_damage = damage_left
 def play_card(user, target, card): #playing  cards
     if user.mana < card.mana_cost:
         print("NEED MORE MANA!")
@@ -47,16 +67,22 @@ def play_card(user, target, card): #playing  cards
 
     if card.action == "damage":
 
-        card.amount = card.amount - target.armour
+        damage = card.amount - target.armour
 
-        if card.amount < 0:
-            card.amount = 0
+        if damage < 0:
+            damage = 0
 
-        if target.shield >= card.amount: #shield reduces damage
-            target.shield = target.shield - card.amount
+        if target.deflect:
+            user.hp = user.hp - damage
+            target.deflect = False
+            print("Damage reflected!")
+            return 
+
+        if target.shield >= damage: #shield reduces damage
+            target.shield = target.shield - damage
 
         else:
-            damage_left = card.amount - target.shield # if the damage is more then the shield
+            damage_left = damage - target.shield # if the damage is more then the shield
             target.shield = 0 
             target.hp = target.hp - damage_left 
             target.last_damage = damage_left
@@ -90,20 +116,60 @@ def play_card(user, target, card): #playing  cards
         print("Revenge Dealt", user.last_damage, "damage")
         user.last_damage = 0
 
-
-
     elif card.action == "armour":
             user.armour = user.armour + card.amount
 
     elif card.action == "overcharge":
         user.mana = user.mana + card.amount
+
+    elif card.action == "sacrifice":
+        user.hp = user.hp - 2
+        user.mana = user.mana + card.amount
+
+    elif card.action == "regenerate":
+        user.regenerate = card.amount
+
+    elif card.action == "drain":
+        damage = card.amount - target.armour
+
+        if damage < 0:
+            damage = 0
+
+        if target.shield >= damage: #shield reduces damage
+            target.shield = target.shield - damage
+        else:
+            damage_left = damage - target.shield # if the damage is more then the shield
+            target.shield = 0 
+            target.hp = target.hp - damage_left 
+            target.last_damage = damage_left
+        user.hp = min(user.hp + damage, user.max_hp)
+
+        print("Drained", damage, "hit points")
+
+    elif card.action == "deflect":
+        user.deflect = True
+        print("Deflect ready!")
+
+    elif card.action == "switch":
+        temp_hp = user.hp
+        user.hp = target.hp
+        target.hp = temp_hp
+        print ("Switched hit points with opponent")
+
+
     
+
+
 
     print(card.name, "was played")
 
 def player_turn(user, target): #adding a playerturn function
 
     user.mana = user.mana + user.managain #adding mana to player turn 
+
+    if user.regenerate > 0: #adding regenerate to player turn
+        user.hp = min(user.hp + 2, user.max_hp)
+        print("Regenerated 2 hit points")
 
     print("\nYour turn")
     print("Hit Points", user.hp)
@@ -119,7 +185,7 @@ def player_turn(user, target): #adding a playerturn function
     choice = input("Pick: ")
 
     if choice == "1":
-        play_card(user, target, Overcharge)
+        play_card(user, target, Zap)
 
     elif choice == "2":
         play_card(user, target, Heal)

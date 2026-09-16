@@ -7,3 +7,5 @@ class Player:
         self.last_damage = 0 
         self.armour = 0
         self.managain = 2
+        self.regenerate = 0
+        self.deflect = False
