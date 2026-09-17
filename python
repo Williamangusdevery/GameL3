@@ -25,7 +25,7 @@ Slash = card("Slash", 3, 4, "enemy", "damage")
 Fireball = card("Fireball", 3, 5, "enemy", "damage")
 Drain = card("Drain", 3, 2, "enemy", "drain")
 Deflect = card("Deflect", 3, 0, "self", "deflect")
-#4 mana
+#4 mana 
 Wallop = card("Wallop", 4, 7, "enemy", "damage")
 Barrier = card("Barrier", 4, 8, "self", "block")
 Mend = card("Mend", 4, 6, "self", "heal")
