@@ -9,3 +9,5 @@ class Player:
         self.managain = 2
         self.regenerate = 0
         self.deflect = False
+        self.deck = []
+        self.hand = []

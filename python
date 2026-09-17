@@ -1,7 +1,6 @@
 from card import card #get card template from card.py
 from Player import Player
-
-print("Magic cards starting!")
+import random
 
 player1 = Player()
 player2 = Player()
@@ -160,7 +159,85 @@ def player_turn(user, target): #adding a playerturn function
 
     else:
         print("try again") 
-        
+
+def build_deck(player):
+    available_cards = [
+        Zap,
+        Heal,
+        Charge,
+        Guard,
+        Strike,
+        Medkit,
+        Crush,
+        Battery,
+        Revenge,
+        Armour,
+        Parry,
+        Sacrifice,
+        Regenerate,
+        Slash,
+        Fireball,
+        Drain,
+        Deflect,
+        Wallop,
+        Barrier,
+        Mend,
+        Overcharge,
+        Immolate,
+        Switch,
+        Doom
+    ]
+    chosen_cards = []
+
+    print("\n Choose 8 cards for your deck")
+
+    while len(chosen_cards) < 8:
+        print("\nAvailable cards:")
+
+        for i, card in enumerate(available_cards, 1):
+            print(i, "-", card.name)
+
+        choice = input("Chose a card: ")
+
+        if choice.isdigit():
+            choice = int(choice)
+
+            if 1 <= choice <= len(available_cards):
+                chosen_card = available_cards[choice - 1]
+
+                if chosen_card not in chosen_cards:
+                    chosen_cards.append(chosen_card)
+                    print(chosen_card.name, "added!")
+
+                else:
+                    print("You already chose that card.")
+
+            else:
+                print("Invalid choice.")
+
+        else:
+            print("Please enter a number.")
+
+    # Randomly shuffle the 8 chosen cards
+    random.shuffle(chosen_cards)
+
+    # First 4 go into hand
+    player.hand = chosen_cards[:4]
+
+    # Last 4 go into deck
+    player.deck = chosen_cards[4:]
+
+    print("\nStarting Hand:")
+    for card in player.hand:
+        print("-", card.name)
+
+    print("\nDeck:")
+    for card in player.deck:
+        print("-", card.name)
+
+
+
+
 while player1.hp > 0 and player2.hp > 0:
 
     player_turn(player1, player2)
