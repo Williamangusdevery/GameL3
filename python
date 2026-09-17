@@ -121,8 +121,10 @@ def play_card(user, target, card): #playing  cards
         print("A devastating wave of energy crashes into your opponent, leaving nothing untouched")
         print("\n DOOM has been unleashed")
 
-    print(card.name, "was played")
+    user.hand.remove(card)
+    user.deck.append(card)
 
+    print(card.name, "was played")
 def player_turn(user, target): #adding a playerturn function
 
     user.mana = user.mana + user.managain #adding mana to player turn 
@@ -132,35 +134,40 @@ def player_turn(user, target): #adding a playerturn function
         user.regenerate = user.regenerate - 1
         print("Regenerated 2 hit points")
 
+    draw_card(user) #drawing a card at the start of the turn
+
     print("\nYour turn")
     print("Hit Points", user.hp)
     print("Mana", user.mana)
     print("Shield", user.shield) #telling player varibles
 
-    print("\npick a card") #chosing between basic cards
-    print("1. Zap")
-    print("2. Heal")
-    print("3. Guard")
-    print("4. Skip")
+    print("\nYour hand:")
 
-    choice = input("Pick: ")
+    for i, card in enumerate(user.hand, 1):
+        print(i, "-", card.name)
 
-    if choice == "1":
-        play_card(user, target, Zap)
+    print("0 - Skip")
 
-    elif choice == "2":
-        play_card(user, target, Heal)
+    choice = input("play a card: ")
 
-    elif choice == "3":
-        play_card(user, target, Guard)
+    if choice.isdigit():
+        choice = int(choice)
 
-    elif choice == "4":
-        print("Turn Skipped")
+        if choice == 0:
+            print("Turn Skipped")
+
+        elif 1 <= choice <= len(user.hand):
+            played_card = user.hand[choice - 1]
+            play_card(user, target, played_card)
+
+        else:
+            print("Invalid choice.")
 
     else:
-        print("try again") 
+        print("Please enter a number.")
+  
 
-def build_deck(player):
+def build_deck(user):
     available_cards = [
         Zap,
         Heal,
@@ -222,25 +229,28 @@ def build_deck(player):
     random.shuffle(chosen_cards)
 
     # First 4 go into hand
-    player.hand = chosen_cards[:4]
+    user.hand = chosen_cards[:4]
 
     # Last 4 go into deck
-    player.deck = chosen_cards[4:]
+    user.deck = chosen_cards[4:]
 
-    print("\nStarting Hand:")
-    for card in player.hand:
-        print("-", card.name)
+def draw_card(user):
 
-    print("\nDeck:")
-    for card in player.deck:
-        print("-", card.name)
+    if len(user.hand) >= 4:
+        print("Hand is full!")
+        return
 
+    drawn_card = user.deck.pop(0)
+    user.hand.append(drawn_card)
+
+    print("Drew", drawn_card.name)
+
+#start deck building
 print("PLAYER 1 DECK BUILDING")
 build_deck(player1)
 
 print("\nPLAYER 2 DECK BUILDING")
 build_deck(player2)
-
 
 while player1.hp > 0 and player2.hp > 0:
 
@@ -255,7 +265,7 @@ while player1.hp > 0 and player2.hp > 0:
         break
     
 print("\nGame over!")
-
+#winning
 if player1.hp <= 0:
     print("Player 2 WINS!!!")
 
