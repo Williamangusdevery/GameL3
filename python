@@ -235,7 +235,11 @@ def build_deck(player):
     for card in player.deck:
         print("-", card.name)
 
+print("PLAYER 1 DECK BUILDING")
+build_deck(player1)
 
+print("\nPLAYER 2 DECK BUILDING")
+build_deck(player2)
 
 
 while player1.hp > 0 and player2.hp > 0:
