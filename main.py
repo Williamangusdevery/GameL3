@@ -1,7 +1,5 @@
 from card import card #get card template from card.py
 from Player import Player
-import tkinter as tk
-from main import start_game
 import random
 #players
 
@@ -240,7 +238,7 @@ def draw_card(user):
     user.hand.append(drawn_card)
 
     print("Drew", drawn_card.name)
-def Start_game(): #game starts
+def start_game(): #game starts
 
     player1 = Player()
     player2 = Player()

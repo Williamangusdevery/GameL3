@@ -1,3 +1,6 @@
+import tkinter as tk
+from main import start_game
+
 card_descriptions = {
     "Zap": "Costs 1 mana. Deals 1 damage.",
     "Heal": "Costs 1 mana. Heals yourself for 2 HP.",
@@ -29,3 +32,72 @@ card_descriptions = {
 
     "Doom": "Costs 10 mana. Deals 20 damage."
 }
+def see_cards():#GUI for seeing all cards and their descriptions
+
+
+
+    card_window = tk.Toplevel(root)
+    card_window.title("Card List")
+    card_window.geometry("600x600")
+
+    title = tk.Label(
+        card_window,
+        text="ALL CARDS",
+        font=("Arial", 20)
+    )
+
+    title.pack(pady=10)
+
+    text = tk.Text(card_window, wrap="word")
+    text.pack(fill="both", expand=True, padx=20, pady=10)
+
+    for name, description in card_descriptions.items():
+        text.insert("end", name + "\n")
+        text.insert("end", description + "\n\n")
+
+    text.config(state="disabled")
+def begin_game():
+    root.destroy()
+    start_game()
+
+root = tk.Tk()
+
+root.title("Magic Cards")
+root.geometry("500x400")
+
+title = tk.Label(
+    root,
+    text="MAGIC CARDS",
+    font=("Arial", 30)
+)
+
+title.pack(pady=40)
+
+start_button = tk.Button(
+    root,
+    text="START GAME",
+    font=("Arial", 18),
+    command=begin_game
+)
+
+start_button.pack(pady=10)
+
+cards_button = tk.Button(
+    root,
+    text="VIEW CARDS",
+    font=("Arial", 18),
+    command=see_cards
+)
+
+cards_button.pack(pady=10)
+
+exit_button = tk.Button(
+    root,
+    text="EXIT",
+    font=("Arial", 18),
+    command=root.destroy
+)
+
+exit_button.pack(pady=10)
+
+root.mainloop()
