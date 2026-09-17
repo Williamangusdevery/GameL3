@@ -1,9 +1,9 @@
 from card import card #get card template from card.py
 from Player import Player
+import tkinter as tk
+from main import start_game
 import random
-
-player1 = Player()
-player2 = Player()
+#players
 
 #cards
 Zap = card("Zap", 1, 1, "enemy", "damage") #Zap test card
@@ -35,7 +35,6 @@ Immolate = card("Immolate", 5, 9, "enemy", "damage")
 Switch = card("Switch", 5, 0, "enemy", "switch")
 # DOOOOOOM
 Doom = card("Doom", 10, 20, "enemy", "DOOM")
-
 #functions
 def deal_damage(user, target, damage): #dealing damage to player
     target.last_damage = 0
@@ -78,10 +77,10 @@ def play_card(user, target, card): #playing  cards
         user.mana = user.mana + card.amount
 
     elif card.action == "revenge":
-        card.amount = user.last_damage
-        deal_damage(user, target, card.amount)
+        damage = user.last_damage
+        deal_damage(user, target, damage)
 
-        print("Revenge Dealt", user.last_damage, "damage")
+        print("Revenge Dealt", damage, "damage")
         user.last_damage = 0
 
     elif card.action == "armour":
@@ -104,7 +103,7 @@ def play_card(user, target, card): #playing  cards
 
         user.hp = min(user.hp + heal, user.max_hp)
 
-        print("Drained", card.amount, "hit points")
+        print("Drained", heal, "hit points")
 
     elif card.action == "deflect":
         user.deflect = True
@@ -164,9 +163,7 @@ def player_turn(user, target): #adding a playerturn function
             print("Invalid choice.")
 
     else:
-        print("Please enter a number.")
-  
-
+        print("Please enter a number.")  
 def build_deck(user):
     available_cards = [
         Zap,
@@ -233,7 +230,6 @@ def build_deck(user):
 
     # Last 4 go into deck
     user.deck = chosen_cards[4:]
-
 def draw_card(user):
 
     if len(user.hand) >= 4:
@@ -244,30 +240,34 @@ def draw_card(user):
     user.hand.append(drawn_card)
 
     print("Drew", drawn_card.name)
+def Start_game(): #game starts
 
-#start deck building
-print("PLAYER 1 DECK BUILDING")
-build_deck(player1)
+    player1 = Player()
+    player2 = Player()
 
-print("\nPLAYER 2 DECK BUILDING")
-build_deck(player2)
+    #start deck building
+    print("PLAYER 1 DECK BUILDING")
+    build_deck(player1)
 
-while player1.hp > 0 and player2.hp > 0:
+    print("\nPLAYER 2 DECK BUILDING")
+    build_deck(player2)
+    #ending the game
+    while player1.hp > 0 and player2.hp > 0:
 
-    player_turn(player1, player2)
+        player_turn(player1, player2)
 
-    if player2.hp <= 0:
-        break
+        if player2.hp <= 0:
+            break
 
-    player_turn(player2, player1)
+        player_turn(player2, player1)
 
-    if player1.hp <= 0:
-        break
+        if player1.hp <= 0:
+            break
     
-print("\nGame over!")
-#winning
-if player1.hp <= 0:
-    print("Player 2 WINS!!!")
+    print("\nGame over!")
+    #winning
+    if player1.hp <= 0:
+        print("Player 2 WINS!!!")
 
-elif player2.hp <= 0:
-    print("Player 1 WINS!!!")
+    elif player2.hp <= 0:
+        print("Player 1 WINS!!!")
