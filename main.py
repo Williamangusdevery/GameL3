@@ -243,6 +243,31 @@ def start_game(): #game starts
     player1 = Player()
     player2 = Player()
 
+    print ("\nZap — Costs 1 mana. Deals 1 damage")
+    print ("\nHeal — Costs 1 mana. Heals yourself for 2 HP")
+    print ("\nCharge — Costs 1 mana. Gives you 2 extra mana")
+    print ("\nGuard — Costs 1 mana. Gives you 2 Shield")
+    print ("\nStrike — Costs 2 mana. Deals 3 damage")
+    print ("\nMedkit — Costs 2 mana. Heals yourself for 4 HP")
+    print ("\nCrush — Costs 2 mana. Deals 2 damage")
+    print ("\nBattery — Costs 2 mana. Gives you 4 extra mana")
+    print ("\nRevenge — Costs 2 mana. Deals damage based on the last damage you received")
+    print ("\nArmour — Costs 2 mana. Permanently reduces damage by 1")
+    print ("\nParry — Costs 2 mana. Gives you 3 Shield")
+    print ("\nSacrifice — Costs 3 mana. Lose 2 HP and gain 6 mana")
+    print ("\nRegenerate — Costs 3 mana. Heal 2 HP each turn for 3 turns")
+    print ("\nSlash — Costs 3 mana. Deals 4 damage")
+    print ("\nFireball — Costs 3 mana. Deals 5 damage")
+    print ("\nDrain — Costs 3 mana. Deals 2 damage and heals for the damage dealt")
+    print ("\nDeflect — Costs 3 mana. Reflects the next damage you receive")
+    print ("\nWallop — Costs 4 mana. Deals 7 damage")
+    print ("\nBarrier — Costs 4 mana. Gives you 8 Shield")
+    print ("\nMend — Costs 4 mana. Heals yourself for 6 HP")
+    print ("\nOvercharge — Costs 4 mana. Gives you 1 extra mana per turn")
+    print ("\nImmolate — Costs 5 mana. Deals 9 damage")
+    print ("\nSwitch — Costs 5 mana. Switches your HP with the opponent")
+    print ("\n")
+
     #start deck building
     print("PLAYER 1 DECK BUILDING")
     build_deck(player1)
@@ -269,3 +294,5 @@ def start_game(): #game starts
 
     elif player2.hp <= 0:
         print("Player 1 WINS!!!")
+
+start_game()
