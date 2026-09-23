@@ -24,8 +24,8 @@ Fireball = card("Fireball", 3, 5, "enemy", "damage")
 Drain = card("Drain", 3, 2, "enemy", "drain")
 Deflect = card("Deflect", 3, 0, "self", "deflect")
 #4 mana 
-Wallop = card("Wallop", 4, 7, "enemy", "damage")
-Barrier = card("Barrier", 4, 8, "self", "block")
+Wallop = card("Wallop", 4, 6, "enemy", "damage")
+Barrier = card("Barrier", 4, 6, "self", "block")
 Mend = card("Mend", 4, 6, "self", "heal")
 Overcharge = card("Overcharge", 4, 1, "self", "overcharge")
 # 5 mana
