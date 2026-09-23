@@ -32,7 +32,7 @@ Overcharge = card("Overcharge", 4, 1, "self", "overcharge")
 Immolate = card("Immolate", 5, 9, "enemy", "damage")
 Switch = card("Switch", 5, 0, "enemy", "switch")
 # DOOOOOOM
-Doom = card("Doom", 10, 20, "enemy", "DOOM")
+Doom = card("Doom", 14, 20, "enemy", "DOOM")
 #functions
 def deal_damage(user, target, damage): #dealing damage to player
     target.last_damage = 0
@@ -260,8 +260,8 @@ def start_game(): #game starts
     print ("\nFireball — Costs 3 mana. Deals 5 damage")
     print ("\nDrain — Costs 3 mana. Deals 2 damage and heals for the damage dealt")
     print ("\nDeflect — Costs 3 mana. Reflects the next damage you receive")
-    print ("\nWallop — Costs 4 mana. Deals 7 damage")
-    print ("\nBarrier — Costs 4 mana. Gives you 8 Shield")
+    print ("\nWallop — Costs 4 mana. Deals 6 damage")
+    print ("\nBarrier — Costs 4 mana. Gives you 6 Shield")
     print ("\nMend — Costs 4 mana. Heals yourself for 6 HP")
     print ("\nOvercharge — Costs 4 mana. Gives you 1 extra mana per turn")
     print ("\nImmolate — Costs 5 mana. Deals 9 damage")
