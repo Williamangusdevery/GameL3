@@ -33,7 +33,37 @@ Immolate = card("Immolate", 5, 9, "enemy", "damage")
 Switch = card("Switch", 5, 0, "enemy", "switch")
 # DOOOOOOM
 Doom = card("Doom", 14, 20, "enemy", "DOOM")
-#functions
+
+card_descriptions = {
+    "Zap": "Deals 1 damage.",
+    "Heal": "Heals yourself for 2 HP.",
+    "Charge": "Gives you 2 extra mana.",
+    "Guard": "Gives you 2 Shield.",
+
+    "Strike": "Deals 3 damage.",
+    "Medkit": "Heals yourself for 4 HP.",
+    "Crush": "Deals 2 damage.",
+    "Battery": "Gives you 4 extra mana.",
+    "Revenge": "Deals damage based on the last damage you received.",
+    "Armour": "Permanently reduces incoming damage by 1.",
+    "Parry": "Gives you 3 Shield.",
+
+    "Sacrifice": "Lose 2 HP and gain 6 mana.",
+    "Regenerate": "Heals 2 HP at the start of your next 2 turns.",
+    "Slash": "Deals 4 damage.",
+    "Fireball": "Deals 5 damage.",
+    "Drain": "Deals 2 damage and heals for the Healthdamage dealt.",
+    "Deflect": "Reflects the next damage you receive.",
+
+    "Wallop": "Deals 6 damage.",
+    "Barrier": "Gives you 6 Shield.",
+    "Mend": "Heals yourself for 6 HP.",
+    "Overcharge": "Gives you 1 extra mana per turn.",
+
+    "Immolate": "Deals 9 damage.",
+    "Switch": "Switches your HP with your opponents.",
+    "Doom": "Deals 20 damage."
+}
 def deal_damage(user, target, damage): #dealing damage to player
     target.last_damage = 0
 
@@ -162,7 +192,7 @@ def player_turn(user, target): #adding a playerturn function
 
     else:
         print("Please enter a number.")  
-def build_deck(user):
+def build_deck(user): #building decks
     available_cards = [
         Zap,
         Heal,
@@ -198,8 +228,17 @@ def build_deck(user):
 
         print("\nAvailable cards:")
 
-        for i, card in enumerate(available_cards, 1):
-            print(i, "-", card.name)
+        for i, chosen_card in enumerate(available_cards, 1): #card descriptions next in card selection
+            description = card_descriptions.get(
+                chosen_card.name,
+                "Description unavailable."
+            )
+
+            print(
+                i, "-", chosen_card.name,
+                "| Cost:", chosen_card.mana_cost, 
+                "|", description
+            )
 
         choice = input("Chose a card: ")
 
@@ -230,7 +269,7 @@ def build_deck(user):
 
     # Last 4 go into deck
     user.deck = chosen_cards[4:]
-def draw_card(user):
+def draw_card(user): #draw cards
 
     if len(user.hand) >= 4:
         print("Hand is full!")
@@ -245,6 +284,7 @@ def start_game(): #game starts
     player1 = Player()
     player2 = Player()
 
+    print("Card descriptions:")
     print ("\nZap — Costs 1 mana. Deals 1 damage")
     print ("\nHeal — Costs 1 mana. Heals yourself for 2 HP")
     print ("\nCharge — Costs 1 mana. Gives you 2 extra mana")
