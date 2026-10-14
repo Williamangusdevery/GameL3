@@ -194,6 +194,8 @@ def build_deck(user):
     print("\n Choose 8 cards for your deck")
 
     while len(chosen_cards) < 8:
+        print("\ncards chosen:", len(chosen_cards), "/ 8")
+
         print("\nAvailable cards:")
 
         for i, card in enumerate(available_cards, 1):
