@@ -266,7 +266,7 @@ def start_game(): #game starts
     print ("\nOvercharge — Costs 4 mana. Gives you 1 extra mana per turn")
     print ("\nImmolate — Costs 5 mana. Deals 9 damage")
     print ("\nSwitch — Costs 5 mana. Switches your HP with the opponent")
-    print ("\n")
+    print ("\nDoom -— Costs 14 mana. Deals 20 damage")
 
     #start deck building
     print("PLAYER 1 DECK BUILDING")
