@@ -355,4 +355,28 @@ def start_game(): #game starts
     elif player2.hp <= 0:
         print("Player 1 WINS!!!")
 
-start_game()
+if __name__ == "__main__":
+
+    play_again = True
+
+    while play_again:
+
+        start_game()
+
+        while True:
+
+            answer = input(
+                "\nWould you like to play again? (yes/no): "
+            ).strip().lower()
+
+            if answer == "y" or answer == "yes":
+                print("\nStarting a new game!")
+                break
+
+            elif answer == "n" or answer == "no":
+                print("Thanks for playing!")
+                play_again = False
+                break
+
+            else:
+                print("Invalid input. Please enter y or n.")
