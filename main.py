@@ -302,31 +302,17 @@ def start_game(): #game starts
     player1 = Player()
     player2 = Player()
 
-    print("Card descriptions:")
-    print ("\nZap — Costs 1 mana. Deals 1 damage")
-    print ("\nHeal — Costs 1 mana. Heals yourself for 2 HP")
-    print ("\nCharge — Costs 1 mana. Gives you 2 extra mana")
-    print ("\nGuard — Costs 1 mana. Gives you 2 Shield")
-    print ("\nStrike — Costs 2 mana. Deals 3 damage")
-    print ("\nMedkit — Costs 2 mana. Heals yourself for 4 HP")
-    print ("\nCrush — Costs 2 mana. Deals 2 damage")
-    print ("\nBattery — Costs 2 mana. Gives you 4 extra mana")
-    print ("\nRevenge — Costs 2 mana. Deals damage based on the last damage you received")
-    print ("\nArmour — Costs 2 mana. Permanently reduces damage by 1")
-    print ("\nParry — Costs 2 mana. Gives you 3 Shield")
-    print ("\nSacrifice — Costs 3 mana. Lose 2 HP and gain 6 mana")
-    print ("\nRegenerate — Costs 3 mana. Heal 2 HP each turn for 3 turns")
-    print ("\nSlash — Costs 3 mana. Deals 4 damage")
-    print ("\nFireball — Costs 3 mana. Deals 5 damage")
-    print ("\nDrain — Costs 3 mana. Deals 2 damage and heals for the damage dealt")
-    print ("\nDeflect — Costs 3 mana. Reflects the next damage you receive")
-    print ("\nWallop — Costs 4 mana. Deals 6 damage")
-    print ("\nBarrier — Costs 4 mana. Gives you 6 Shield")
-    print ("\nMend — Costs 4 mana. Heals yourself for 6 HP")
-    print ("\nOvercharge — Costs 4 mana. Gives you 1 extra mana per turn")
-    print ("\nImmolate — Costs 5 mana. Deals 9 damage")
-    print ("\nSwitch — Costs 5 mana. Switches your HP with the opponent")
-    print ("\nDoom -— Costs 14 mana. Deals 20 damage")
+    print("Rules:")
+    print ("\nEach player will choose 8 cards to put in their deck before the match ")
+    print ("\nEach player will start with 4 random cards in their hand and the other 4 in their pickup deck, 10 hit points and 4 mana ")
+    print ("\nAll Cards cost mana to play and then cause an additional effect damage, healing or other")
+    print ("\nAt the start of a players turn other than their first they gain 2 mana ")
+    print ("and pick up 1 card from their pickup deck, then they may play 1 card ")
+    print("which they have enough mana to play, after your card is resolved your turn ends")
+    print ("\nafter a cards effect is resolved place the card at the button of your pickup deck ")
+    print ("\nThe objective is to reduce your opponents hit points to 0 before they do the same.")
+    print ("\nPlayers may choose to not play a card")
+    print ("\nA player may only have 4 cards at a time in hand")
 
     #start deck building
     print("PLAYER 1 DECK BUILDING")
@@ -354,12 +340,11 @@ def start_game(): #game starts
 
     elif player2.hp <= 0:
         print("Player 1 WINS!!!")
-
-if __name__ == "__main__":
+if __name__ == "__main__": #play again option
 
     play_again = True
 
-    while play_again:
+    while play_again: 
 
         start_game()
 
