@@ -170,12 +170,22 @@ def player_turn(user, target): #adding a playerturn function
 
     print("\nYour hand:")
 
-    for i, card in enumerate(user.hand, 1):
-        print(i, "-", card.name)
+    for i, card in enumerate(user.hand, 1): 
+
+        description = card_descriptions.get(
+            card.name,
+            "Description unavailable."
+        )
+
+        print(
+            i, "-", card.name,
+            "| Mana:", card.mana_cost,
+            "|", description
+        )
 
     print("0 - Skip")
 
-    choice = input("play a card: ")
+    choice = input("Play a card: ")
 
     if choice.isdigit():
         choice = int(choice)
