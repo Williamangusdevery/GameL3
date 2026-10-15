@@ -115,7 +115,7 @@ def play_card(user, target, card): #playing  cards
             user.armour = user.armour + card.amount
 
     elif card.action == "overcharge":
-        user.mana = user.mana + card.amount
+        user.managain = user.managain + card.amount
 
     elif card.action == "sacrifice":
         user.hp = user.hp - 2
