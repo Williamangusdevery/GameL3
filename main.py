@@ -168,40 +168,48 @@ def player_turn(user, target): #adding a playerturn function
     print("Mana", user.mana)
     print("Shield", user.shield) #telling player varibles
 
-    print("\nYour hand:")
+    while True: #repeats the choice of which card to play until a valid choice is made or the turn is skipped
+        print("\nYour hand:")
 
-    for i, card in enumerate(user.hand, 1): 
+        for i, hand_card in enumerate(user.hand, 1):
 
-        description = card_descriptions.get(
-            card.name,
-            "Description unavailable."
-        )
+            description = card_descriptions.get(
+                hand_card.name,
+                "Description unavailable."
+            )
 
-        print(
-            i, "-", card.name,
-            "| Mana:", card.mana_cost,
-            "|", description
-        )
+            print(
+                i, "-", hand_card.name,
+                "| Mana:", hand_card.mana_cost,
+                "|", description
+            )
 
-    print("0 - Skip")
+        print("0 - Skip")
 
-    choice = input("Play a card: ")
+        choice = input("Play a card: ").strip()
 
-    if choice.isdigit():
+        if not choice.isdigit():
+            print("Please enter a number.")
+            continue
+
         choice = int(choice)
 
         if choice == 0:
-            print("Turn Skipped")
+            print("Turn skipped")
+            break
 
-        elif 1 <= choice <= len(user.hand):
-            played_card = user.hand[choice - 1]
-            play_card(user, target, played_card)
+        if choice < 1 or choice > len(user.hand):
+            print("Invalid choice. Try again.")
+            continue
 
-        else:
-            print("Invalid choice.")
+        played_card = user.hand[choice - 1]
 
-    else:
-        print("Please enter a number.")  
+        if user.mana < played_card.mana_cost:
+            print("Not enough mana! Choose another card.")
+            continue
+
+        play_card(user, target, played_card)
+        break
 def build_deck(user): #building decks
     available_cards = [
         Zap,
