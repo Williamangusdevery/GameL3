@@ -1,7 +1,6 @@
 from card import card #get card template from card.py
 from Player import Player
 import random
-#players
 
 #cards
 Zap = card("Zap", 1, 1, "enemy", "damage") #Zap test card
@@ -18,7 +17,7 @@ Armour = card("Armour", 2, 1, "self", "armour")
 Parry = card("Parry", 2, 3, "self", "block")
 #3 mana
 Sacrifice = card("Sacrifice", 3, 6, "self", "sacrifice")
-Regenerate = card("Regenerate", 3, 2, "self", "regenerate")
+Regenerate = card("Regenerate", 3, 3, "self", "regenerate")
 Slash = card("Slash", 3, 4, "enemy", "damage")
 Fireball = card("Fireball", 3, 5, "enemy", "damage")
 Drain = card("Drain", 3, 2, "enemy", "drain")
